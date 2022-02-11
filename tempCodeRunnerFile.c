@@ -1,0 +1,159 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <math.h>
+
+void    print_codes( void );     /* menu of codes */
+double  decode_char( char code );
+double  decode_multiplier( char code3);
+
+ int main()
+{
+     char    code1;       /* one code per band */
+     char    code2;      /* one code per band */
+     char    code3;     /* one code per band */
+     double  resistance;
+     double  color1;    /* input color values */
+     double  color2;   /* input color values */
+     double  color3;  /* input color values */
+     int     flag;
+     int     p;
+
+     /* Print codes and ask  for user input. */
+     print_codes();
+     printf( "\n\n\tEnter three color  codes of choise :  " );
+
+     /* Read three character codes. */
+     code1 = getchar();
+     code2 = getchar();
+     code3 = getchar();
+
+     /* Decode each character code. */
+     color1 = decode_char( code1 );
+     color2 = decode_char( code2 );
+     color3 = decode_multiplier( code3 );
+
+     /* Check whether codes is valid . */
+     if ( color1 == -999.0 )
+     {
+            printf( "\n\n\t cannot validate the resistance values \n" );
+
+     }
+      else if ( color3 == -999.0 )
+      {
+            printf( "\n\n\t cannot validate the resistance values \n" );
+
+      }
+      else if ( color2 == -999.0 )
+      {
+            printf( "\n\n\t cannot validate the resistance values\n" );
+
+      }
+         
+          
+
+     /* If codes were correct , compute and print resistance in ohms. */
+     else
+      {
+           p= 10 * color1 + color2;
+          resistance =   p  * (color3 );
+                                 
+                    
+          printf( "\n\n\tResistance in ohms:\t%f\n", resistance );
+      }
+
+     return EXIT_SUCCESS;
+}
+
+
+void  print_codes( void )
+{
+   printf( "\n\n\tThe colored bands are coded as follows:\n\n\n\t" );
+   printf( "COLOR\t\t\tCODE\n\t" );
+   printf( "-----\t\t\t----\n\n" );
+   printf( "\tBlack-------------------> B\n" );
+   printf( "\tBrown-------------------> N\n" );
+   printf( "\tRed---------------------> R\n" );
+   printf( "\tOrange------------------> O\n" );
+   printf( "\tYellow------------------> Y\n" );
+   printf( "\tGreen-------------------> G\n" );
+   printf( "\tBlue--------------------> E\n" );
+   printf( "\tViolet------------------> V\n" );
+   printf( "\tGray--------------------> A\n" );
+   printf( "\tWhite-------------------> W\n" );
+}
+double decode_char( char code )
+{
+     switch ( code ) {
+     case 'B':
+          return 0.0;
+          break;
+     case 'N':
+          return 1.0;
+          break;
+     case 'R':
+          return 2.0;
+          break;
+     case 'O':
+          return 3.0;
+          break;
+     case 'Y':
+          return 4.0;
+          break;
+     case 'G':
+          return 5.0;
+          break;
+     case 'E':
+          return 6.0;
+          break;
+     case 'V':
+          return 7.0;
+          break;
+     case 'A':
+          return 8.0;
+          break;
+     case 'W':
+          return 9.0;
+          break;
+     default:
+          return -999.0;     
+     }
+}
+double decode_multiplier(char  code3 )
+{
+    switch (code3){
+        case 'B':
+          return 1.0;
+          break;
+     case 'N':
+          return 10.0;
+          break;
+     case 'R':
+          return 100.0;
+          break;
+     case 'O':
+          return 1000.0;
+          break;
+     case 'Y':
+          return 10000.0;
+          break;
+     case 'G':
+          return 100000.0;
+          break;
+     case 'E':
+          return 1000000.0;
+          break;
+     case 'V':
+          return 10000000.0;
+          break;
+     case 'A':
+          return 100000000.0;
+          break;
+     case 'W':
+          return 1000000000.0;
+          break;
+     default:
+          return -999.0;  
+
+    }
+}
